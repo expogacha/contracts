@@ -1,0 +1,46 @@
+{
+  "network": "sepolia",
+  "chainId": 11155111,
+  "version": 3,
+  "mode": "vrf-weth-test-collection",
+  "operator": "0xf99f1cFCF2F7B1B9E290a1DDDcc98c294409918D",
+  "pool": "0x52AAf036B2CDeC1e298F739fB8f332AB7D586735",
+  "vault": "0xb0558b1Da3921DDA7e8A77F063b107ab83b3a016",
+  "registry": "0x0DC5877e45fDDe901B14420D7cB793C12c704523",
+  "launchpad": "0xE0f5F810D3AbB43D861A8C5069d607c6490BF31e",
+  "quoteSigner": "0xE3D5732b7692EAdCbb03e4a712cd26A0dc36a689",
+  "randomness": "0x20C98De0CC9C6abCE6044C81E1ee1CE0F36a7A3c",
+  "currency": "ETH",
+  "usdc": "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14",
+  "nft": "0x6FEBd73C063496Fb2C77C57aA5C771042338d5d1",
+  "coordinator": "0x9DdfaCa8183c41ad55329BdeeD9F6A8d53168B1B",
+  "startBlock": 12018837,
+  "configs": {
+    "nft-art": 1
+  },
+  "testTiers": [
+    {
+      "minTokenId": "1000",
+      "maxTokenId": "1999",
+      "referenceUsdc": "800000000000000"
+    },
+    {
+      "minTokenId": "2000",
+      "maxTokenId": "2999",
+      "referenceUsdc": "2500000000000000"
+    },
+    {
+      "minTokenId": "3000",
+      "maxTokenId": "3999",
+      "referenceUsdc": "8000000000000000"
+    },
+    {
+      "minTokenId": "4000",
+      "maxTokenId": "4999",
+      "referenceUsdc": "20000000000000000"
+    }
+  ],
+  "openedTopic": "0x78660502681057adcc39a31e383c25cf45abda68d39252aa27e3c47c09f7e4fc",
+  "verifiedCode": false,
+  "checkedAt": "2026-11-01T10:46:13.775Z"
+}

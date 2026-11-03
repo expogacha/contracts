@@ -1,0 +1,21 @@
+{
+  "name": "@expogacha/contracts",
+  "version": "3.2.0",
+  "description": "Smart contracts of Expo Gacha: on-chain NFT gacha machines with Chainlink VRF draws, a shared reserve and vault custody.",
+  "license": "MIT",
+  "private": true,
+  "repository": "github:expogacha/contracts",
+  "homepage": "https://expogacha.com",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "forge build",
+    "test": "forge test",
+    "build:v31": "ln -sfn ../node_modules v31/node_modules && forge build --root v31",
+    "check:artifacts": "npm run build && npm run build:v31 && node script/check-artifacts.mjs"
+  },
+  "devDependencies": {
+    "@foundry-rs/forge": "1.7.1",
+    "@openzeppelin/contracts": "5.4.0",
+    "@openzeppelin/contracts-upgradeable": "5.4.0"
+  }
+}

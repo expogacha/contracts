@@ -1,0 +1,580 @@
+[
+ {
+  "type": "constructor",
+  "inputs": [
+   {
+    "name": "pool_",
+    "type": "address",
+    "internalType": "contract ExpoGachaPool"
+   },
+   {
+    "name": "owner_",
+    "type": "address",
+    "internalType": "address"
+   },
+   {
+    "name": "signer",
+    "type": "address",
+    "internalType": "address"
+   },
+   {
+    "name": "creationFee",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ],
+  "stateMutability": "nonpayable"
+ },
+ {
+  "type": "function",
+  "name": "CREATION_FEE",
+  "inputs": [],
+  "outputs": [
+   {
+    "name": "",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ],
+  "stateMutability": "view"
+ },
+ {
+  "type": "function",
+  "name": "QUOTE_TYPEHASH",
+  "inputs": [],
+  "outputs": [
+   {
+    "name": "",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   }
+  ],
+  "stateMutability": "view"
+ },
+ {
+  "type": "function",
+  "name": "eip712Domain",
+  "inputs": [],
+  "outputs": [
+   {
+    "name": "fields",
+    "type": "bytes1",
+    "internalType": "bytes1"
+   },
+   {
+    "name": "name",
+    "type": "string",
+    "internalType": "string"
+   },
+   {
+    "name": "version",
+    "type": "string",
+    "internalType": "string"
+   },
+   {
+    "name": "chainId",
+    "type": "uint256",
+    "internalType": "uint256"
+   },
+   {
+    "name": "verifyingContract",
+    "type": "address",
+    "internalType": "address"
+   },
+   {
+    "name": "salt",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   },
+   {
+    "name": "extensions",
+    "type": "uint256[]",
+    "internalType": "uint256[]"
+   }
+  ],
+  "stateMutability": "view"
+ },
+ {
+  "type": "function",
+  "name": "launch",
+  "inputs": [
+   {
+    "name": "q",
+    "type": "tuple",
+    "internalType": "struct ExpoLaunchpad.Quote",
+    "components": [
+     {
+      "name": "creator",
+      "type": "address",
+      "internalType": "address"
+     },
+     {
+      "name": "gachaId",
+      "type": "bytes32",
+      "internalType": "bytes32"
+     },
+     {
+      "name": "priceUsdc",
+      "type": "uint128",
+      "internalType": "uint128"
+     },
+     {
+      "name": "odds",
+      "type": "uint16[4]",
+      "internalType": "uint16[4]"
+     },
+     {
+      "name": "entitlementsHash",
+      "type": "bytes32",
+      "internalType": "bytes32"
+     },
+     {
+      "name": "quickSellBps",
+      "type": "uint16",
+      "internalType": "uint16"
+     },
+     {
+      "name": "settlementWindow",
+      "type": "uint32",
+      "internalType": "uint32"
+     },
+     {
+      "name": "creatorFeeBps",
+      "type": "uint16",
+      "internalType": "uint16"
+     },
+     {
+      "name": "maxOpen",
+      "type": "uint32",
+      "internalType": "uint32"
+     },
+     {
+      "name": "metadataHash",
+      "type": "bytes32",
+      "internalType": "bytes32"
+     },
+     {
+      "name": "nonce",
+      "type": "uint256",
+      "internalType": "uint256"
+     },
+     {
+      "name": "expiresAt",
+      "type": "uint64",
+      "internalType": "uint64"
+     }
+    ]
+   },
+   {
+    "name": "items",
+    "type": "tuple[][4]",
+    "internalType": "struct ExpoGachaPool.Entitlement[][4]",
+    "components": [
+     {
+      "name": "collection",
+      "type": "address",
+      "internalType": "address"
+     },
+     {
+      "name": "minTokenId",
+      "type": "uint256",
+      "internalType": "uint256"
+     },
+     {
+      "name": "maxTokenId",
+      "type": "uint256",
+      "internalType": "uint256"
+     },
+     {
+      "name": "tokenRoot",
+      "type": "bytes32",
+      "internalType": "bytes32"
+     },
+     {
+      "name": "referenceUsdc",
+      "type": "uint128",
+      "internalType": "uint128"
+     },
+     {
+      "name": "budgetUsdc",
+      "type": "uint128",
+      "internalType": "uint128"
+     },
+     {
+      "name": "weight",
+      "type": "uint128",
+      "internalType": "uint128"
+     }
+    ]
+   },
+   {
+    "name": "signature",
+    "type": "bytes",
+    "internalType": "bytes"
+   }
+  ],
+  "outputs": [
+   {
+    "name": "configId",
+    "type": "uint64",
+    "internalType": "uint64"
+   }
+  ],
+  "stateMutability": "nonpayable"
+ },
+ {
+  "type": "function",
+  "name": "owner",
+  "inputs": [],
+  "outputs": [
+   {
+    "name": "",
+    "type": "address",
+    "internalType": "address"
+   }
+  ],
+  "stateMutability": "view"
+ },
+ {
+  "type": "function",
+  "name": "pool",
+  "inputs": [],
+  "outputs": [
+   {
+    "name": "",
+    "type": "address",
+    "internalType": "contract ExpoGachaPool"
+   }
+  ],
+  "stateMutability": "view"
+ },
+ {
+  "type": "function",
+  "name": "quoteDigest",
+  "inputs": [
+   {
+    "name": "q",
+    "type": "tuple",
+    "internalType": "struct ExpoLaunchpad.Quote",
+    "components": [
+     {
+      "name": "creator",
+      "type": "address",
+      "internalType": "address"
+     },
+     {
+      "name": "gachaId",
+      "type": "bytes32",
+      "internalType": "bytes32"
+     },
+     {
+      "name": "priceUsdc",
+      "type": "uint128",
+      "internalType": "uint128"
+     },
+     {
+      "name": "odds",
+      "type": "uint16[4]",
+      "internalType": "uint16[4]"
+     },
+     {
+      "name": "entitlementsHash",
+      "type": "bytes32",
+      "internalType": "bytes32"
+     },
+     {
+      "name": "quickSellBps",
+      "type": "uint16",
+      "internalType": "uint16"
+     },
+     {
+      "name": "settlementWindow",
+      "type": "uint32",
+      "internalType": "uint32"
+     },
+     {
+      "name": "creatorFeeBps",
+      "type": "uint16",
+      "internalType": "uint16"
+     },
+     {
+      "name": "maxOpen",
+      "type": "uint32",
+      "internalType": "uint32"
+     },
+     {
+      "name": "metadataHash",
+      "type": "bytes32",
+      "internalType": "bytes32"
+     },
+     {
+      "name": "nonce",
+      "type": "uint256",
+      "internalType": "uint256"
+     },
+     {
+      "name": "expiresAt",
+      "type": "uint64",
+      "internalType": "uint64"
+     }
+    ]
+   }
+  ],
+  "outputs": [
+   {
+    "name": "",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   }
+  ],
+  "stateMutability": "view"
+ },
+ {
+  "type": "function",
+  "name": "quoteSigner",
+  "inputs": [],
+  "outputs": [
+   {
+    "name": "",
+    "type": "address",
+    "internalType": "address"
+   }
+  ],
+  "stateMutability": "view"
+ },
+ {
+  "type": "function",
+  "name": "renounceOwnership",
+  "inputs": [],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+ },
+ {
+  "type": "function",
+  "name": "setQuoteSigner",
+  "inputs": [
+   {
+    "name": "signer",
+    "type": "address",
+    "internalType": "address"
+   }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+ },
+ {
+  "type": "function",
+  "name": "transferOwnership",
+  "inputs": [
+   {
+    "name": "newOwner",
+    "type": "address",
+    "internalType": "address"
+   }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+ },
+ {
+  "type": "function",
+  "name": "usdc",
+  "inputs": [],
+  "outputs": [
+   {
+    "name": "",
+    "type": "address",
+    "internalType": "contract IERC20"
+   }
+  ],
+  "stateMutability": "view"
+ },
+ {
+  "type": "function",
+  "name": "usedNonce",
+  "inputs": [
+   {
+    "name": "",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ],
+  "outputs": [
+   {
+    "name": "",
+    "type": "bool",
+    "internalType": "bool"
+   }
+  ],
+  "stateMutability": "view"
+ },
+ {
+  "type": "event",
+  "name": "EIP712DomainChanged",
+  "inputs": [],
+  "anonymous": false
+ },
+ {
+  "type": "event",
+  "name": "Launched",
+  "inputs": [
+   {
+    "name": "configId",
+    "type": "uint64",
+    "indexed": true,
+    "internalType": "uint64"
+   },
+   {
+    "name": "creator",
+    "type": "address",
+    "indexed": true,
+    "internalType": "address"
+   },
+   {
+    "name": "gachaId",
+    "type": "bytes32",
+    "indexed": true,
+    "internalType": "bytes32"
+   },
+   {
+    "name": "nonce",
+    "type": "uint256",
+    "indexed": false,
+    "internalType": "uint256"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "event",
+  "name": "OwnershipTransferred",
+  "inputs": [
+   {
+    "name": "previousOwner",
+    "type": "address",
+    "indexed": true,
+    "internalType": "address"
+   },
+   {
+    "name": "newOwner",
+    "type": "address",
+    "indexed": true,
+    "internalType": "address"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "event",
+  "name": "QuoteSignerSet",
+  "inputs": [
+   {
+    "name": "signer",
+    "type": "address",
+    "indexed": false,
+    "internalType": "address"
+   }
+  ],
+  "anonymous": false
+ },
+ {
+  "type": "error",
+  "name": "BadSignature",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "ECDSAInvalidSignature",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "ECDSAInvalidSignatureLength",
+  "inputs": [
+   {
+    "name": "length",
+    "type": "uint256",
+    "internalType": "uint256"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "ECDSAInvalidSignatureS",
+  "inputs": [
+   {
+    "name": "s",
+    "type": "bytes32",
+    "internalType": "bytes32"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "Expired",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "Invalid",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "InvalidShortString",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "OwnableInvalidOwner",
+  "inputs": [
+   {
+    "name": "owner",
+    "type": "address",
+    "internalType": "address"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "OwnableUnauthorizedAccount",
+  "inputs": [
+   {
+    "name": "account",
+    "type": "address",
+    "internalType": "address"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "SafeERC20FailedOperation",
+  "inputs": [
+   {
+    "name": "token",
+    "type": "address",
+    "internalType": "address"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "StringTooLong",
+  "inputs": [
+   {
+    "name": "str",
+    "type": "string",
+    "internalType": "string"
+   }
+  ]
+ },
+ {
+  "type": "error",
+  "name": "Unauthorized",
+  "inputs": []
+ },
+ {
+  "type": "error",
+  "name": "Used",
+  "inputs": []
+ }
+]
