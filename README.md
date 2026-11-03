@@ -174,7 +174,7 @@ this repository. Sources are published unchanged so they stay identical to what 
 
 How the protocol protects buyers and its reserve:
 
-- **Provable draws.** Every prize is picked by Chainlink VRF, and the odds of a machine are fixed on-chain when it is created.
+- **Provable draws.** Every prize is picked by Chainlink VRF, and the odds of a machine are published on-chain when it is created.
 - **Openings are covered up front.** The reserve an opening could owe is set aside before randomness is requested, and the owner can only withdraw free reserve, within a 24-hour cap that takes 48 hours to raise.
 - **Every path ends.** A draw that never arrives is refunded, and an undelivered claim is compensated at the full reference.
 - **Bound admission.** A collection's review is tied to its code hash and the vault implementation's. Deliveries stop if either changes or the review expires.
