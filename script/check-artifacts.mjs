@@ -1,8 +1,9 @@
 // Keeps the published artifacts honest:
 // - the frozen v3.1 sources under v31/ are byte-for-byte the ones deployed;
 // - every ABI under abi/ is what the sources in this repository compile to;
-// - with MAINNET_RPC_URL set, the v3.1 build matches the code on Ethereum mainnet, immutables masked and metadata hash
-//   included. The URL is read from the environment only, so it never appears in arguments or logs.
+// - with MAINNET_RPC_URL set, the builds match the code on Ethereum mainnet, immutables masked and metadata hash
+//   included: v3.2 from src/, v3.1 from v31/. The URL is read from the environment only, so it never appears in
+//   arguments or logs.
 // Run through: npm run check:artifacts
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
@@ -43,25 +44,35 @@ const rpc = process.env.MAINNET_RPC_URL;
 if (!rpc) {
   console.log('MAINNET_RPC_URL not set: mainnet comparison skipped.');
 } else {
-  const deployment = json('deployments/mainnet-v3.1.json');
+  const v32 = json('deployments/mainnet-v3.2.json');
+  const v31 = json('deployments/mainnet-v3.1.json');
   const mask = (code, references) => {
-    for (const list of Object.values(references)) {
+    for (const list of Object.values(references ?? {})) {
       for (const { start, length } of list) {
         code = code.slice(0, start * 2) + '0'.repeat(length * 2) + code.slice((start + length) * 2);
       }
     }
     return code;
   };
-  for (const [name, address] of [['ExpoGachaPool', deployment.pool], ['ExpoLaunchpad', deployment.launchpad]]) {
+  const TARGETS = [
+    ['v3.2', '', 'ExpoGachaPool', v32.pool],
+    ['v3.2', '', 'ExpoLaunchpad', v32.launchpad],
+    ['v3.2', '', 'ExpoAdmissionRegistry', v32.registry],
+    ['v3.2', '', 'ChainlinkRandomness', v32.randomness],
+    ['v3.2', '', 'ExpoVault', v32.vaultImplementation],
+    ['v3.1', 'v31/', 'ExpoGachaPool', v31.pool],
+    ['v3.1', 'v31/', 'ExpoLaunchpad', v31.launchpad],
+  ];
+  for (const [version, base, name, address] of TARGETS) {
     const response = await fetch(rpc, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_getCode', params: [address, 'latest'] }),
     });
     const { result } = await response.json();
-    const { deployedBytecode: built } = artifact('v31/', `${name}.sol`, name);
+    const { deployedBytecode: built } = artifact(base, `${name}.sol`, name);
     const references = built.immutableReferences;
-    assert.equal(mask(result.slice(2), references), mask(built.object.slice(2), references), `${name} differs from the mainnet code`);
-    console.log(`${name}: matches the mainnet code at ${address}.`);
+    assert.equal(mask(result.slice(2), references), mask(built.object.slice(2), references), `${version} ${name} differs from the mainnet code`);
+    console.log(`${version} ${name}: matches the mainnet code at ${address}.`);
   }
 }

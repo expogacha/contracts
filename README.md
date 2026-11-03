@@ -97,20 +97,19 @@ provides the `IRandomness` interface the pool imports.
 
 | Network | Version | Pool | Vault | Registry | Launchpad |
 |---|---|---|---|---|---|
-| Ethereum mainnet | v3.1 | [`0x2388…F803`](https://etherscan.io/address/0x2388B90321c5788f60DF3941715982ed12afF803#code) | [`0xcA48…bf5c`](https://etherscan.io/address/0xcA4847FEC66fC37e00867c917DFB92837118bf5c#code) | [`0x48fE…9F73`](https://etherscan.io/address/0x48fEa85e9587C2015e7d479e5F1b71F7446B9F73#code) | [`0x7b9b…0ef2`](https://etherscan.io/address/0x7b9bB2c72c2de255840B75D08e7d4C4da58D0ef2#code) |
+| **Ethereum mainnet** | **v3.2 (current)** | [`0x171E…cf13`](https://etherscan.io/address/0x171E761529BA775630643Fdf53d4654eFE69cf13#code) | [`0x0672…50D8`](https://etherscan.io/address/0x06721ae8d45151F4AE248D3a1cb88f69B26f50D8#code) | [`0x68F1…3c4D`](https://etherscan.io/address/0x68F15619bF3290c7bf9EF4d4939Df042Ebcc3c4D#code) | [`0xec2d…9F7D`](https://etherscan.io/address/0xec2dC9852A0799eCafc74C51868e464188A69F7D#code) |
+| Ethereum mainnet | v3.1 (replaced) | [`0x2388…F803`](https://etherscan.io/address/0x2388B90321c5788f60DF3941715982ed12afF803#code) | [`0xcA48…bf5c`](https://etherscan.io/address/0xcA4847FEC66fC37e00867c917DFB92837118bf5c#code) | [`0x48fE…9F73`](https://etherscan.io/address/0x48fEa85e9587C2015e7d479e5F1b71F7446B9F73#code) | [`0x7b9b…0ef2`](https://etherscan.io/address/0x7b9bB2c72c2de255840B75D08e7d4C4da58D0ef2#code) |
 | Sepolia (test deployment, valueless assets) | v3.1 | [`0x52AA…6735`](https://sepolia.etherscan.io/address/0x52AAf036B2CDeC1e298F739fB8f332AB7D586735) | [`0xb055…a016`](https://sepolia.etherscan.io/address/0xb0558b1Da3921DDA7e8A77F063b107ab83b3a016) | [`0x0DC5…4523`](https://sepolia.etherscan.io/address/0x0DC5877e45fDDe901B14420D7cB793C12c704523) | [`0xE0f5…F31e`](https://sepolia.etherscan.io/address/0xE0f5F810D3AbB43D861A8C5069d607c6490BF31e) |
 
 Every address and setting is in [`deployments/`](deployments). The `usdc` field holds the pool's payment token, which
 is canonical WETH on these deployments, and names ending in `Usdc` are historical.
 
-> [!IMPORTANT]
-> **`src/` is v3.2, the next version. It is not deployed yet.** What runs on-chain today is the frozen v3.1 source in
-> [`v31/src/`](v31/src). This table gets the v3.2 addresses once they exist.
+`src/` is the source of the current mainnet deployment. `v31/` keeps the source of the v3.1 deployments.
 
 ### Verify the deployed code yourself
 
-`v31/` compiles with the settings of the deployment, so the build can be compared with the chain, metadata hash
-included, with immutables masked:
+Both versions compile with the settings of their deployment, so each build can be compared with the chain, metadata
+hash included, with immutables masked:
 
 ```sh
 npm ci
@@ -120,8 +119,13 @@ MAINNET_RPC_URL=<your RPC URL> npm run check:artifacts
 ```text
 Frozen v3.1 sources: unchanged.
 ABIs: 7 match the sources.
-ExpoGachaPool: matches the mainnet code at 0x2388B90321c5788f60DF3941715982ed12afF803.
-ExpoLaunchpad: matches the mainnet code at 0x7b9bB2c72c2de255840B75D08e7d4C4da58D0ef2.
+v3.2 ExpoGachaPool: matches the mainnet code at 0x171E761529BA775630643Fdf53d4654eFE69cf13.
+v3.2 ExpoLaunchpad: matches the mainnet code at 0xec2dC9852A0799eCafc74C51868e464188A69F7D.
+v3.2 ExpoAdmissionRegistry: matches the mainnet code at 0x68F15619bF3290c7bf9EF4d4939Df042Ebcc3c4D.
+v3.2 ChainlinkRandomness: matches the mainnet code at 0x9C5e09A83295FEE023f3146B11Ee860Af1A24FF0.
+v3.2 ExpoVault: matches the mainnet code at 0xc3852C2bBF7b5C4D64b98b597bc4dD8c36cfe42b.
+v3.1 ExpoGachaPool: matches the mainnet code at 0x2388B90321c5788f60DF3941715982ed12afF803.
+v3.1 ExpoLaunchpad: matches the mainnet code at 0x7b9bB2c72c2de255840B75D08e7d4C4da58D0ef2.
 ```
 
 CI runs the same check without the RPC comparison.
@@ -159,8 +163,8 @@ EXPO_FORK_RPC_URL=<your RPC URL> npx forge test --match-path 'test/*Fork.t.sol'
 ## Repository layout
 
 ```text
-src/          current protocol (v3.2), not deployed yet
-v31/          frozen v3.1 sources, the code running on-chain
+src/          current protocol (v3.2), deployed on mainnet
+v31/          frozen v3.1 sources
 test/         Foundry test suites
 script/       vault deployment and upgrade scripts, artifact check
 abi/          exported ABIs (the V32 suffix marks v3.2)
